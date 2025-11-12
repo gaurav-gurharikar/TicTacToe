@@ -6,6 +6,8 @@ public class TicTacToe {
         //Create a 3x3 board
         char board[][] = new char[3][3];
 
+        Scanner sc = new Scanner(System.in);
+
         //Initialize the board as empty spaces
         for(int row = 0; row < board.length; row++) {
             for(int col = 0; col < board[row].length; col++ ) {
@@ -14,12 +16,17 @@ public class TicTacToe {
         }
 
         //Initialize current player
-        char player = 'X';
-
+        char player;
+        while(true) {
+            System.out.print("Choose the first player(X or O): ");
+            player = sc.next().charAt(0);
+            if(player != 'X' && player != 'O') {
+                System.out.println("Invalid input! Please try again...");
+            }
+            else break;
+        }
         //Game is NOT over
         boolean gameOver = false;
-
-        Scanner sc = new Scanner(System.in);
 
         //Loop runs as long as the game is NOT over
         while(!gameOver) {
@@ -50,6 +57,8 @@ public class TicTacToe {
         
         //Print the board after the game is over
         printBoard(board);
+
+        sc.close();
     }
 
     //Function to print the structure and content of the board
